@@ -2,7 +2,7 @@ from rest_framework import viewsets, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import CustomUser
-from .serializers import UserSerializer, CustomTokenObtainPairSerializer
+from .serializers import CreateUserSerializer, CustomTokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
@@ -15,7 +15,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = CreateUserSerializer
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):

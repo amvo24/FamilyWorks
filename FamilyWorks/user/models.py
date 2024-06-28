@@ -8,7 +8,9 @@ from django.contrib.auth.models import User, AbstractUser
 # Create your models here.
 class CustomUser(AbstractUser):
     birthday = models.DateField(null=True, blank=True)
-    # created_at = 
 
     def __str__(self) -> str:
         return self.username
+
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"

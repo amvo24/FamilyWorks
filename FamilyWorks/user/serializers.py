@@ -3,7 +3,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth import authenticate
 from .models import CustomUser
 
-class UserSerializer(serializers.ModelSerializer):
+class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = [
@@ -22,6 +22,16 @@ class UserSerializer(serializers.ModelSerializer):
         instance.set_password(password)
         instance.save()
         return instance
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = [
+            'id',
+            'username',
+            'first_name',
+            'last_name'
+        ]
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
