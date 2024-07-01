@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'user',
     'family',
     'task',
+    'notifications',
 ]
 
 MIDDLEWARE = [
