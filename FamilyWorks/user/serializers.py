@@ -1,11 +1,13 @@
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from django.contrib.auth import authenticate
-from .models import CustomUser
+from django.contrib.auth import authenticate, get_user_model
+# from .models import CustomUser
+
+User = get_user_model()
 
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CustomUser
+        model = User
         fields = [
             'id',
             'username',
@@ -24,13 +26,14 @@ class CreateUserSerializer(serializers.ModelSerializer):
         return instance
 
 class UserSerializer(serializers.ModelSerializer):
+    full_name = serializers.ReadOnlyField(source='get_full_name')
+    
     class Meta:
-        model = CustomUser
+        model = User
         fields = [
             'id',
             'username',
-            'first_name',
-            'last_name'
+            'full_name'
         ]
 
 

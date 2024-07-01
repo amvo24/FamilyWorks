@@ -14,7 +14,7 @@ class Family(models.Model):
 
 class FamilyMembership(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    family = models.ForeignKey(Family, on_delete=models.CASCADE)
+    family = models.ForeignKey(Family, on_delete=models.CASCADE, related_name="members")
     joined_at = models.DateTimeField(auto_now_add=True)
 
 class Invitation(models.Model):

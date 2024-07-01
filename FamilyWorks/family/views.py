@@ -13,7 +13,7 @@ class FamilyViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        return Family.objects.filter(familymembership__user=user)
+        return Family.objects.filter(members__user=user)
 
     @action(detail=True, methods=['get'])
     def list_members(self, request, **kwargs):
