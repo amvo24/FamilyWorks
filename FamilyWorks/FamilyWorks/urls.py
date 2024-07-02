@@ -23,4 +23,5 @@ urlpatterns = [
     path('api/', include('family.urls')),
     path('api/', include('task.urls')),
     path('api/', include('notifications.urls')),
+    path('api/', include('comments.urls')),
 ]
