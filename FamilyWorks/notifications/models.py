@@ -5,7 +5,7 @@ from django.utils import timezone
 User = get_user_model()
 
 # Create your models here.
-class Notificatiions(models.Model):
+class Notifications(models.Model):
     NOTIFICATION_TYPES = [
         ('INVITE', 'Invitation'),
         ('TASK', 'Task Update'),
