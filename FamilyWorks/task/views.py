@@ -21,6 +21,11 @@ class TaskViewSet(viewsets.ModelViewSet):
         family_ids = FamilyMembership.objects.filter(user=user).values_list('family_id', flat=True)
         return Task.objects.filter(family_id__in=family_ids)
 
+    def perform_create(self, serializer):
+        task = serializer.save()
+        return super().perform_create(serializer)
+
+
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         user = request.user

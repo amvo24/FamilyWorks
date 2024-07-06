@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from .models import Task
-from family.models import Family
+from family.models import Family, FamilyMembership
 from django.contrib.auth import get_user_model
+from notifications.utils import create_notification
 
 User = get_user_model()
 
@@ -38,4 +39,20 @@ class TaskSerializer(serializers.ModelSerializer):
 
         validated_data['family'] = family
         task = Task.objects.create(**validated_data)
+
+        family_memberships = FamilyMembership.objects.filter(family=family)
+
+        for membership in family_memberships:
+            print('THIS IS MEMBERSHIP ', membership.id)
+
+            create_notification(
+                # user_id=membership.id, content=f"A new task has been created in your family: {task.title}"
+                recepient_id=membership.user.id,
+                sender_id=user.id,
+                notification_type='TASK',
+                content=f"A new task has been created in your family: {task.title}",
+                task=task,
+                family=family
+            )
+
         return task

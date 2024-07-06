@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from .models import Notifications
 from .serializer import NotificationSerializer
 
@@ -6,3 +6,4 @@ from .serializer import NotificationSerializer
 class NotificationViewSet(viewsets.ModelViewSet):
     queryset = Notifications.objects.all()
     serializer_class = NotificationSerializer
+    permission_classes = [permissions.IsAuthenticated]
