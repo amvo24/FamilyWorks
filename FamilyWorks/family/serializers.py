@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Family, FamilyMembership, Invitation
 from django.contrib.auth import get_user_model
 from user.serializers import UserSerializer
+from notifications.utils import create_notification
 
 User = get_user_model()
 
@@ -79,4 +80,15 @@ class InvitationSerializer(serializers.ModelSerializer):
         recipient = User.objects.get(email=recipient_email)
         validated_data['recipient'] = recipient
         invitation = super().create(validated_data)
+
+        family = validated_data['family']
+
+        create_notification(
+            recepient_id=recipient.id,
+            sender_id=sender.id,
+            notification_type='INVITATION',
+            content=f"You've been invited to join a family",
+            task=None,
+            family=family
+        )
         return invitation

@@ -43,7 +43,7 @@ class TaskSerializer(serializers.ModelSerializer):
         family_memberships = FamilyMembership.objects.filter(family=family)
 
         for membership in family_memberships:
-            print('THIS IS MEMBERSHIP ', membership.id)
+            # print('THIS IS MEMBERSHIP ', membership.id)
 
             create_notification(
                 # user_id=membership.id, content=f"A new task has been created in your family: {task.title}"
