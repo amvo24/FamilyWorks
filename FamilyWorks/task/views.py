@@ -8,6 +8,7 @@ from .serializers import TaskSerializer
 from django.http import Http404
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.exceptions import PermissionDenied, NotFound
+from notifications.utils import create_notification
 
 
 # Create your views here.
@@ -40,6 +41,9 @@ class TaskViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         if instance.created_by != request.user:
             return Response({"detail": "You do not have permission to update this task."}, status=status.HTTP_403_FORBIDDEN)
+
+        content = f"Task '{instance.title}' has been updated."
+        create_notification(instance.created_by.id, request.user.id, 'TASK', content, task=instance)
         return super().update(request, *args, **kwargs)
 
     @action(detail=False, methods=['get'])

@@ -7,7 +7,6 @@ User = get_user_model()
 def create_notification(recepient_id, sender_id, notification_type, content, task=None, family=None):
     # try:
         recepient = User.objects.get(id=recepient_id)
-        # recepient = FamilyMembership.objects.get()
         print("THIS IS recepient ", recepient)
         sender = User.objects.get(id=sender_id)
         print("THIS IS sender ", sender)
