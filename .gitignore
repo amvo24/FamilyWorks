@@ -1,0 +1,33 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React Native / Expo
+.expo/
+.expo-shared/
+*.log
+*.tmp
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# macOS
+.DS_Store
+
+# Environment files
+env
+env.*
+
+# Python (if Django or Flask)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# OS or IDE junk
+.vscode/
+.idea/
