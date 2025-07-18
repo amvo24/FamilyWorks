@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "FamilyWorks_Frontend",
-    "slug": "FamilyWorks_Frontend",
+    "name": "React_FamilyWorks",
+    "slug": "React_FamilyWorks",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "familyworksfrontend",
+    "scheme": "reactfamilyworks",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
